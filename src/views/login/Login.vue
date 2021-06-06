@@ -22,6 +22,7 @@ export default {
     return {
       business: null,
       businessList: [],
+      senha: null,
     };
   },
 
