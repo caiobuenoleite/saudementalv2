@@ -1,0 +1,28 @@
+.login {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #00a5a1;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 320px;
+    max-width: 320px;
+    height: 320px;
+    max-height: 320px;
+    border: 8px solid #ffffffb3;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+
+    .title {
+      font-size: 24px;
+      color: #00a5a1;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
