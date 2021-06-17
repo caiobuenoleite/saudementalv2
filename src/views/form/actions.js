@@ -51,7 +51,7 @@ const postAnswers = (obj, call) => {
     });
 };
 
-const getScore = (answer, questionId) => {
+const getScore = (answer, questionId, scoreAntigo) => {
   // let score = null;
 
 

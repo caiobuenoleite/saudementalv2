@@ -113,7 +113,7 @@ export default {
       console.log("questão do radio", question);
 
       score = act.getScore(data, question.id, score);
-      console.log("score do radio", score);
+      console.log("score do radio");
       // ATUALIZAR???
       // aqui que salva no firebase as respostas e o score
       // const obj = {}
