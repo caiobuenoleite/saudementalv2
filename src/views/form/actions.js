@@ -51,6 +51,19 @@ const postAnswers = (obj, call) => {
     });
 };
 
+const updateAnswers = (ref, obj, call) => {
+  Firebase.database()
+    .ref(ref)
+    .update(obj, (err) => {
+      if (err) {
+        console.error(err);
+        call(false);
+        return;
+      }
+      call(true);
+    });
+};
+
 const getScore = (answer, questionId, scoreAntigo) => {
   // let score = null;
 
@@ -63,4 +76,5 @@ export default {
   getRespostas,
   postAnswers,
   getScore,
+  updateAnswers
 };

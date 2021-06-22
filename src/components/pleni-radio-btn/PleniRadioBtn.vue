@@ -42,7 +42,7 @@ export default {
 
   methods: {
     actActive(titleBtn) {
-      console.log("titleBtn", titleBtn);
+      // console.log("titleBtn", titleBtn);
       this.active = titleBtn;
       this.$emit("input", titleBtn);
     },

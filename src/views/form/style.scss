@@ -77,4 +77,22 @@
       }
     }
   }
+  .salvar{
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    margin-bottom: 0.5rem;
+    padding: 0rem 1rem;
+    .btn_salvar {
+      margin: 0.5rem;
+      border-radius: 8px;
+      background-color: #00a5a1;
+      border-color: #00a5a1;
+      transition: all 0.5s ease;
+      &:hover {
+        background-color: darken(#00a5a1, 25%);
+      }
+
+    }
+  }
 }

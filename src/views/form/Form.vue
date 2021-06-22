@@ -16,26 +16,21 @@
         </div>
       </div>
     </div>
-    <!-- 
-    <b-form-group
-      label="Button style radios with outline-primary variant and size lg"
-      v-slot="{ ariaDescribedby }"
-    >
-      <b-form-radio-group
-        id="btn-radios-2"
-        v-model="selected"
-        :options="options"
-        :aria-describedby="ariaDescribedby"
-        button-variant="outline-primary"
-        size="lg"
-        name="radio-btn-outline"
-        buttons
-      ></b-form-radio-group>
-    </b-form-group> -->
+    <div class="salvar">
+      <b-button
+        class="btn_salvar"
+        type="submit"
+        variant="primary"
+        @click="openModal"
+        >Salvar</b-button
+      >
+      <modal-direction v-model="modalOpen"></modal-direction>
+    </div>
   </section>
 </template>
 
 <script>
+import ModalDirection from "../../components/modal_salvar/Modal";
 import PleniRadioBtn from "../../components/pleni-radio-btn/PleniRadioBtn";
 
 import act from "./actions.js";
@@ -43,19 +38,15 @@ export default {
   name: "FormAll",
   components: {
     PleniRadioBtn,
+    ModalDirection,
   },
 
   data() {
     return {
-      score: { questionario: [{ questao: null, resposta: null }] },
-      // score: [
-      //   {
-      //     questionario: [{ questao: null, resposta: null }],
-      //     setsectoror: null,
-      //     business: null,
-      //   },
-      // ],
+      modalOpen: false,
+      score: [],
       business: { id: null },
+      uid: null,
       sector: null,
       questions: [{ title: null, id: null, group: null }],
     };
@@ -65,41 +56,39 @@ export default {
     const pRouter = this.$route.params;
     this.business = pRouter.business || null;
     this.sector = pRouter.sector || null;
-    console.log("business", this.business);
-    console.log("sector", this.sector);
+    this.uid = pRouter.uid || null;
+    // console.log("business", this.business);
+    // console.log("sector", this.sector);
+    // console.log("uid", this.uid);
 
     this.score.business = pRouter.business;
     this.score.setor = pRouter.sector;
-    console.log("score", this.score);
+    // console.log("score", this.score);
 
-    if (!this.business?.id || !this.sector?.id) {
+    if (!this.business?.id || !this.sector?.id || this.uid === null) {
       this.$router.push("/");
     }
 
     act.getQuestions((questions) => {
-      console.log("questions", this.questions);
+      // console.log("questions", this.questions);
       this.questions = questions;
     });
 
     act.getRespostas((respostas) => {
-      console.log("respostas", respostas);
+      // console.log("respostas", respostas);
       this.respostas = respostas;
     });
-
-    // const obj = {
-    //   testeSave: true,
-    //   respostaA: "42",
-    //   filmePreferido: "StarWars",
-    //   p1r4: "true",
-    // };
-    // act.postAnswers(obj, (call) => {
-    //   console.log("retorno do push", call);
-    // });
   },
 
   methods: {
+    openModal() {
+      this.modalOpen = !this.modalOpen;
+    },
     actReturn() {
-      this.$router.push({ name: "Main", params: { business: this.business } });
+      this.$router.push({
+        name: "Main",
+        params: { business: this.business, uid: this.uid },
+      });
     },
     uniqueCheck(e) {
       this.additional_grouped = [];
@@ -108,17 +97,39 @@ export default {
       }
     },
 
-    actPleniRadioBtn(data, question, score) {
-      console.log("data do radio", data);
-      console.log("questão do radio", question);
+    actPleniRadioBtn(answer, question) {
+      // console.log("answer do radio", answer);
+      // console.log("questão do radio", question);
 
-      score = act.getScore(data, question.id, score);
-      console.log("score do radio");
-      // ATUALIZAR???
-      // aqui que salva no firebase as respostas e o score
-      // const obj = {}
-      // act.postAnswers(obj,(res)=>{})
-      console.log("*****************");
+      let resp = 2;
+      switch (answer) {
+        case "Sim":
+          resp = 1;
+          break;
+        case "Não":
+          resp = 0;
+          break;
+      }
+
+      // se for por cada resposta, entao o firebase sera como update
+      const ref = `respostas_coletadas/${question.group}/${this.business.id}/${this.sector.id}/${this.uid}//${question.id}`;
+      const obj = { score: resp };
+      // console.log(ref, obj);
+      act.updateAnswers(ref, obj, (res) => {});
+
+      // se for no final...
+      // ao clicar numa resposta, varrer o 'this.score' para atualizar
+      // e o firebase sera push
+      // const obj = {
+      //   questionario: [{ questao: question, resposta: answer }],
+      //   sector: this.sector,
+      //   business: this.business,
+      //   score: resp,
+      //   group: question
+      // },
+      // this.score.push(obj);
+
+      // console.log("*****************");
     },
   },
 };

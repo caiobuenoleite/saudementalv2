@@ -32,14 +32,22 @@ export default {
     return {
       business: { id: null },
       sectorList: [],
+      uid: null,
     };
   },
 
   mounted() {
+    const pUid = this.$route.params;
+    this.uid = pUid.uid || null;
+
     const pBusiness = this.$route.params;
     this.business = pBusiness.business || { id: null };
 
     if (!this.business?.id) {
+      this.actReturnLogin();
+    }
+
+    if (this.uid === null) {
       this.actReturnLogin();
     }
 
@@ -58,7 +66,7 @@ export default {
     actOpenForm(sector) {
       this.$router.push({
         name: "Form",
-        params: { business: this.business, sector: sector },
+        params: { business: this.business, sector: sector, uid: this.uid },
       });
     },
   },

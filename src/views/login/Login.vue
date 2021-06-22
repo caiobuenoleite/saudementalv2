@@ -30,6 +30,7 @@ export default {
       plenilogo: plenilogo,
       business: null,
       businessList: [],
+      uid: null,
     };
   },
 
@@ -45,12 +46,17 @@ export default {
         return;
       }
       if (this.password === this.business.password) {
+        const max = 999999;
+        const min = 1;
+        const rdn = Math.round(Math.random() * (max - min) + min);
+        const time = new Date().getTime();
+        this.uid = `${time}${rdn}`;
         this.$router.push({
           name: "Main",
-          params: { business: this.business },
+          params: { business: this.business, uid: this.uid },
         });
       } else {
-        alert("Wrong password!");
+        alert("Senha incorreta!");
       }
     },
   },
