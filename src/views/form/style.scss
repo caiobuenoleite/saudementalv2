@@ -6,10 +6,10 @@
 
   .header {
     display: flex;
-    width: 100%;
+    width: 100vw;
     justify-content: space-between;
     background-color: #00a5a1;
-    font-size: 24px;
+    font-size: 1em;
     font-weight: bold;
     color: #fff;
     margin-bottom: 0.5rem;
@@ -29,6 +29,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: space-between;
+    width: calc(100vw);
     // align-items: flex-start;
     flex: 1;
     padding: 1rem;
@@ -39,7 +40,7 @@
       flex: 1;
       flex-direction: column;
       color: darken(#00a5a1, 25%);
-      font-size: 16px;
+      font-size: 1em;
       font-weight: bold;
       border: 1px solid #00a5a1;
       margin: 0.5rem;
@@ -60,7 +61,7 @@
         justify-content: flex-end;
         align-items: flex-end;
         color: #fff;
-        font-size: 16px;
+        font-size: 1em;
 
         background-color: #00a5a1;
         min-width: 200px;
@@ -78,6 +79,7 @@
     }
   }
   .salvar{
+    width: 100vw;
     display: flex;
     flex-direction: column;
     background-color: #f1f1f1;

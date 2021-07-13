@@ -3,7 +3,7 @@
 <template>
   <section class="login">
     <div class="form">
-      <b-img :src="plenilogo" />
+      <b-img :src="plenilogo" class="imagem_classe" />
       <div class="title">PLENI - Saúde Mental</div>
       <b-form-select v-model="business" :options="businessList"></b-form-select>
       <b-input

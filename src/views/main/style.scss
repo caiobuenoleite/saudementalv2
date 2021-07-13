@@ -7,7 +7,7 @@
 
   .header {
     display: flex;
-    width: 100%;
+    width: calc(100vw);
     justify-content: space-between;
     background-color: #00a5a1;
     font-size: 24px;
@@ -42,13 +42,13 @@
       justify-content: flex-start;
       align-items: flex-start;
       color: #fff;
-      font-size: 16px;
+      font-size: 1em;
 
       background-color: #00a5a1;
-      min-width: 200px;
-      max-width: 200px;
-      min-height: 100px;
-      max-height: 100px;
+      min-width: 10em;
+      max-width: 10em;
+      min-height: 5em;
+      max-height: 5em;
       margin: 0.5rem;
       padding: 1rem;
       border-radius: 8px;
