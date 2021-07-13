@@ -1,0 +1,63 @@
+<div class="salvar">
+      <b-button
+        class="btn_salvar"
+        type="submit"
+        variant="primary"
+        @click="$bvModal.show('modal-scoped')"
+        >Salvar</b-button
+      >
+      <b-modal id="modal-scoped">
+        <template #modal-header="{}">
+          <!-- Emulate built in modal header close button action -->
+          <!--<b-button size="sm" variant="outline-danger" @click="close()">
+            Close Modal
+          </b-button> -->
+          <h5 style="text-align: center">Pleni Saúde!</h5>
+        </template>
+
+        <template>
+          <h1 style="text-align: center">
+            <!--<b-img :src="plenilogo" />
+            <br />-->
+            <b
+              >Saúde e qualidade<br />
+              de vida</b
+            >
+            onde você<br />
+            estiver!
+          </h1>
+          <h5 style="text-align: center">
+            Saiba que saúde mental
+            <b
+              >é muito<br />
+              importante!</b
+            >
+          </h5>
+          <h5 style="text-align: center">
+            E que a sua empresa e nós da <b> PLENI</b> <br />
+            estamos aqui para você.
+          </h5>
+          <!--<b-button @click="hide()">Hide Modal</b-button> -->
+        </template>
+
+        <template #modal-footer="{ cancel }">
+          <b>Deseja Salvar suas respostas?</b>
+          <!-- Emulate built in modal footer ok and cancel button actions -->
+          <b-button size="sm" variant="success" @click="actFinalizar()">
+            Salvar
+          </b-button>
+          <b-button size="sm" variant="danger" @click="cancel()">
+            Voltar
+          </b-button>
+          <!-- Button with custom close trigger value -->
+          <!-- <b-button
+            size="sm"
+            variant="outline-secondary"
+            @click="hide('forget')"
+          >  
+          Forget it
+          </b-button>
+          -->
+        </template>
+      </b-modal>
+    </div>

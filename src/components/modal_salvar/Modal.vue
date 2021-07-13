@@ -1,44 +1,46 @@
-<template>
-  <div class="modal" v-show="value">
-    <div class="container">
-      <div class="modal__title">Direction</div>
-      <p>Get a direction with your favourite apps</p>
-      <a href="#" class="btn gmaps">
-        <img src="https://img.icons8.com/color/420/google-maps.png" /> Google
-        Maps
-      </a>
-      <a href="#" class="btn waze">
-        <img src="https://img.icons8.com/color/420/waze.png" /> Waze
-      </a>
-      <button
-        @click.prevent="close"
-        class="mt-3 border-b border-teal font-semibold"
-      >
-        Close
-      </button>
+<style src="./Modal.scss" lang="scss" scoped></style>
+
+<template lang="html">
+  <section class="minha-modal">
+    <div class="minha-modal-macro">
+      <div class="title">{{ title }}</div>
+      <div class="content">
+        <slot name="container"></slot>
+      </div>
+      <div class="footer">
+        <slot name="footer"></slot>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
-    <script>
+<script>
 export default {
-  name: "Modal",
+  name: "MinhaModal",
+
   props: {
-    value: {
+    title: {
+      type: String,
       required: true,
     },
   },
-  methods: {
-    close() {
-      this.$emit("input", !this.value);
-    },
+
+  components: {},
+
+  mixins: [],
+
+  data() {
+    return {};
   },
+
+  computed: {},
+
+  watch: {},
+
+  mounted() {},
+
+  beforeDestroy() {},
+
+  methods: {},
 };
 </script>
-
-
-    <style lang="css" scoped>
-.modal {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-</style>

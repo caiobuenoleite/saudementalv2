@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Login from "../views/login/Login.vue";
 import Main from "../views/main/Main.vue";
 import Form from "../views/form/Form.vue";
+import Obrigado from "../views/obrigado/Obrigado.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     path: "/form",
     name: "Form",
     component: Form,
+  },
+  {
+    path: "/obrigado",
+    name: "Obrigado",
+    component: Obrigado,
   },
 ];
 

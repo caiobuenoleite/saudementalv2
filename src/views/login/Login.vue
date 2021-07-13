@@ -7,6 +7,7 @@
       <div class="title">PLENI - Saúde Mental</div>
       <b-form-select v-model="business" :options="businessList"></b-form-select>
       <b-input
+        v-on:keyup.enter="actLogin"
         type="password"
         v-model="password"
         placeholder="Password"
